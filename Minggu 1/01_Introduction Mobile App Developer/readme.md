@@ -1,4 +1,4 @@
-Mobile App Development
+(01) Mobile App Development
 
 Poin pertama pada materi tersebut saya mempelajari tentang seluk beluk dari Mobile App Development, mulai dari Pengertian Software, Jenis Software, Pengembangan Software dan Tahapan dari Pengembangan Software.
 
@@ -7,4 +7,3 @@ Poin kedua pengertian dari software sendiri merupakan sebuah aplikasi yang berja
 Poin ketiga Jenis jenis software antara lain Web, Dekstop dan Mobile.
 
 Poin keempat yaitu pengertian dari bahasa pemrograman adalah rangkaian teks yang digunakan untuk memberi perintah kepada komputer. Lalu untuk membaca bahasa pemrograman tersebut kita biasa menggunakan Compiler atau Interpreter.
-

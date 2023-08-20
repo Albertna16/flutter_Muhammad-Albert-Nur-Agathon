@@ -1,4 +1,4 @@
-Basic Version and Branch Management
+(02) Basic Version and Branch Management
 
 poin pertama disini saya dijelaskan tentang Version Control System merupakan sebuah kumpulan software yang terintegrasi dan digunakan untuk membantu seorang software engineer mengelola source code yang telah dibuat untuk membuat sebuah program.
 
