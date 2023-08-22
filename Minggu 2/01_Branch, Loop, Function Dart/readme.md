@@ -1,0 +1,7 @@
+(04) Branching, Looping, dan Function
+
+Branching merupakan sebuah cara yang digunakan untuk membandingkan sebuah kondisi tertentu untuk mengambil satu keputusan yang tepat. Pada bahasa pemrograman dart, branching sendiri terdapat beberapa jenis yaitu if-else, if-elseif-else, dan switch case. dan dari semua jenis branching tersebut terdapat kelebihan dan kelemahannya masing masing.
+
+Looping merupakan sebuah cara yang digunakan untuk mempersingkat sebuah kode dan menjalankan proses secara berulang kali. Pada bahasa pemrograman dart, looping sendiri dibagi menjadi beberapa jenis yaitu for, while, dan do-while. Kita dapat memilih menggunakan jenis perulangan yang mana untuk kode yang akan kita tulis, tetapi dari semua jenis perulangan tersebut terdapat kelebihan dan kelemahannya tersendiri. Kita dapat menghentikan sebuah perulangan tersebut menggunakan break(menghentikan seluruh proses perulangan) dan continue(menghentikan satu kali proses perulangan).
+
+Function merupakan sebuah kumpulan kode yang dapat digunakan berulang kali. Jadi jika kita mengubah function tersebut sekali saja, maka penggunaan lainnya akan ikut berubah. Function sendiri dapat menggunakan parameter yang mana kita dapat mengirimkan sebuah data ke function tersebut. 
