@@ -12,7 +12,7 @@ class AddDialogWidgets extends StatelessWidget {
       children: [
         Text(
           textLabel,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),

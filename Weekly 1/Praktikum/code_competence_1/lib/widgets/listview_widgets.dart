@@ -1,9 +1,12 @@
 import 'package:code_competence_1/models/contact_models.dart';
+import 'package:code_competence_1/widgets/info_contact_widgets.dart';
 import 'package:flutter/material.dart';
 
 class ListViewWidgets extends StatelessWidget {
   final List<Contact> contactList;
-  const ListViewWidgets({super.key, required this.contactList});
+  final Function(int) onEditPressed;
+  final Function(int) onDeletePressed;
+  const ListViewWidgets({super.key, required this.contactList, required this.onEditPressed, required this.onDeletePressed});
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +33,23 @@ class ListViewWidgets extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    InfoContactWidgets(context, contact);
+                  },
                   icon: const Icon(Icons.info),
                   iconSize: 24,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    onEditPressed(index);
+                  },
                   icon: const Icon(Icons.edit),
                   iconSize: 24,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    onDeletePressed(index);
+                  },
                   icon: const Icon(Icons.delete),
                   iconSize: 24,
                 ),

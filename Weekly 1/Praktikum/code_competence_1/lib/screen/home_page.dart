@@ -1,9 +1,11 @@
 import 'package:code_competence_1/models/contact_models.dart';
 import 'package:code_competence_1/widgets/add_dialog_widgets.dart';
+import 'package:code_competence_1/widgets/button_submit_widgets.dart';
 import 'package:code_competence_1/widgets/listview_widgets.dart';
 import 'package:code_competence_1/widgets/text_description_widgets.dart';
 import 'package:code_competence_1/widgets/text_field_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   final ValueNotifier<int> _messageLength = ValueNotifier<int>(0);
 
+  int indexContact = -1;
   List<Contact> contactList = [];
 
   @override
@@ -56,7 +59,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void addContact() {
+  void _addContact() {
     final firstName = _firstNameController.text;
     final lastName = _lastNameController.text;
     final email = _emailController.text;
@@ -74,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           message: message,
         ));
         _customDialog(
-          title: 'Success!!',
+          title: 'Data berhasil ditambahkan',
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -89,9 +92,70 @@ class _HomePageState extends State<HomePage> {
         print(
           'firstName: $firstName, lastName: $lastName, email: $email, message: $message',
         );
-        // _resetField();
+        _resetField();
       });
     }
+  }
+
+  void _updateContact() {
+    final firstName = _firstNameController.text;
+    final lastName = _lastNameController.text;
+    final email = _emailController.text;
+    final message = _messageController.text;
+
+    if (_validateName(firstName) &&
+        _validateName(lastName) &&
+        _validateEmail(email) &&
+        _validateMessage(message) &&
+        indexContact != -1 &&
+        firstName.isNotEmpty &&
+        lastName.isNotEmpty &&
+        email.isNotEmpty &&
+        message.isNotEmpty) {
+      setState(() {
+        contactList[indexContact] = Contact(
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          message: message,
+        );
+      });
+      _customDialog(
+        title: 'Data berhasil diubah!!',
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AddDialogWidgets(textLabel: 'First Name:', textValue: firstName),
+            AddDialogWidgets(textLabel: 'Last Name:', textValue: lastName),
+            AddDialogWidgets(textLabel: 'Email:', textValue: email),
+            AddDialogWidgets(textLabel: 'Message:', textValue: message),
+          ],
+        ),
+      );
+      _resetField();
+    }
+  }
+
+  void _deleteContact(int index) {
+    setState(() {
+      contactList.removeAt(index);
+    });
+    _customDialog(
+      title: 'Data berhasil dihapus',
+      content: const Text('Kontak berhasil dihapus dari daftar kontak anda'),
+    );
+  }
+
+  void editContact(int index) {
+    final contact = contactList[index];
+    setState(() {
+      _firstNameController.text = contact.firstName;
+      _lastNameController.text = contact.lastName;
+      _emailController.text = contact.email;
+      _messageController.text = contact.message;
+      indexContact = index;
+    });
   }
 
   bool _validateName(String name) {
@@ -139,6 +203,7 @@ class _HomePageState extends State<HomePage> {
     _lastNameController.clear();
     _emailController.clear();
     _messageController.clear();
+    indexContact = -1;
   }
 
   @override
@@ -175,11 +240,30 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(16.0),
             child: ListView(
               children: [
-                Container(
-                  height: height,
-                  width: width,
-                  color: Colors.red,
-                ),
+                SizedBox(
+                    height: height,
+                    width: width,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/image/address-book-solid.svg',
+                          height: 70,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          'Contact App',
+                          style: GoogleFonts.poppins(
+                            fontSize: 34,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
+                    )),
                 const TextDescriptionWidgets(),
                 const SizedBox(height: 16),
                 Row(
@@ -216,21 +300,20 @@ class _HomePageState extends State<HomePage> {
                   messageLength: _messageLength,
                 ),
                 const SizedBox(height: 16.0),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        addContact();
-                      },
-                      child: Text(
-                        'Submit',
-                        style: GoogleFonts.poppins(
-                            fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ],
-                ),
+                ButtonSubmitWidget(
+                    isEditing: indexContact != -1,
+                    onSubmit: () {
+                      if (indexContact == -1) {
+                        _addContact();
+                      } else {
+                        _updateContact();
+                      }
+                      setState(() {});
+                    },
+                    onClear: () {
+                      _resetField();
+                      setState(() {});
+                    }),
                 const SizedBox(
                   height: 16,
                 ),
@@ -247,7 +330,11 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    ListViewWidgets(contactList: contactList),
+                    ListViewWidgets(
+                      contactList: contactList,
+                      onEditPressed: editContact,
+                      onDeletePressed: _deleteContact,
+                    ),
                   ],
                 ),
               ],
