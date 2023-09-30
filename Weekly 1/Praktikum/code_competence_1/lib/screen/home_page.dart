@@ -191,7 +191,7 @@ class _HomePageState extends State<HomePage> {
       _customDialog(
         title: 'Invalid Message',
         content: const Text(
-            'Data tidak boleh kosong, harus diawali dengan huruf kapital dan maksimal 70 huruf'),
+            'Data tidak boleh kosong, harus diawali dengan huruf kapital dan maksimal 70 karakter'),
       );
       return false;
     }

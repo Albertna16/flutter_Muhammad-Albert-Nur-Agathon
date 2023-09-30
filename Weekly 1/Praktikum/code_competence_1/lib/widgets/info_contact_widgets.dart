@@ -4,31 +4,31 @@ import 'package:flutter/material.dart';
 
 void InfoContactWidgets(BuildContext context, Contact contact) {
   showDialog(
-      context: context,
-      builder: (contaxt) {
-        return AlertDialog(
-          title: const Text('Data Lengkap Kontak'),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AddDialogWidgets(
-                  textLabel: 'First Name', textValue: contact.firstName),
-              AddDialogWidgets(
-                  textLabel: 'Last Name', textValue: contact.lastName),
-              AddDialogWidgets(textLabel: 'Email', textValue: contact.email),
-              AddDialogWidgets(
-                  textLabel: 'Message', textValue: contact.message),
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Kembali'),
-            )
+    context: context,
+    builder: (contaxt) {
+      return AlertDialog(
+        title: const Text('Data Lengkap Kontak'),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AddDialogWidgets(
+                textLabel: 'First Name', textValue: contact.firstName),
+            AddDialogWidgets(
+                textLabel: 'Last Name', textValue: contact.lastName),
+            AddDialogWidgets(textLabel: 'Email', textValue: contact.email),
+            AddDialogWidgets(textLabel: 'Message', textValue: contact.message),
           ],
-        );
-      });
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Kembali'),
+          )
+        ],
+      );
+    },
+  );
 }

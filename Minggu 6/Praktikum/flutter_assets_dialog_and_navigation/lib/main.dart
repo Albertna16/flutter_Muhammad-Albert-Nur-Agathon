@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         RoutesNavigation.splashScreen: (_) => const SplashScreen(),
         RoutesNavigation.homeScreen: (_) => const HomeScreen(),
         RoutesNavigation.detailScreen: (_) => const DetailScreen(),
-        RoutesNavigation.ContactScreen: (_) => const ContactScreen(),
+        RoutesNavigation.contactScreen: (_) => const ContactScreen(),
       },
     );
   }

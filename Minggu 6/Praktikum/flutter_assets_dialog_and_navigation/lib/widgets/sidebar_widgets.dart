@@ -34,7 +34,7 @@ class SideBarWidgets extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: TextButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, RoutesNavigation.ContactScreen);
+                Navigator.pushReplacementNamed(context, RoutesNavigation.contactScreen);
               },
               child: Text('Contact Page', style: GoogleFonts.mooli(fontWeight: FontWeight.w700),),
             ),
