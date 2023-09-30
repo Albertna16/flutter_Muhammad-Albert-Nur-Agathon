@@ -45,9 +45,9 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 6,
             ),
             Text(
-              'Galeri App',
+              'Galeri & Contact App',
               style: GoogleFonts.mooli(
-                fontSize: 34,
+                fontSize: 26,
                 color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,

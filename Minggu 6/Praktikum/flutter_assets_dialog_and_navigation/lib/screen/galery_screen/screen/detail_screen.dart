@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assets_dialog_and_navigation/models/image_argument.dart';
+import 'package:flutter_assets_dialog_and_navigation/arguments/image_argument.dart';
 import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 

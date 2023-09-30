@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assets_dialog_and_navigation/models/image_argument.dart';
-import 'package:flutter_assets_dialog_and_navigation/widgets/bottom_sheet_widget.dart';
+import 'package:flutter_assets_dialog_and_navigation/arguments/image_argument.dart';
+import 'package:flutter_assets_dialog_and_navigation/screen/galery_screen/widgets/bottom_sheet_widget.dart';
+import 'package:flutter_assets_dialog_and_navigation/widgets/sidebar_widgets.dart';
 import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: GradientAppBar(
         title: Text(
-          "Flutter Galery",
+          "Galery App",
           style: GoogleFonts.mooli(
             fontWeight: FontWeight.bold,
           ),
@@ -22,6 +23,7 @@ class HomeScreen extends StatelessWidget {
           colors: [Colors.cyan, Colors.blue, Colors.lightBlue],
         ),
       ),
+      drawer: const SideBarWidgets(),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
