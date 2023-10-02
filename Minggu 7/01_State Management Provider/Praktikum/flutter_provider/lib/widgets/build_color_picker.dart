@@ -9,7 +9,6 @@ class BuildColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -22,49 +21,58 @@ class BuildColorPicker extends StatelessWidget {
                 "Color",
                 style: ThemeTextStyle().m3TitleMedium,
               ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(contactProvider.currentColor),
-                ),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text("Pick your Color",
-                            style: ThemeTextStyle().m3BodyMedium),
-                        content: BlockPicker(
-                          pickerColor: contactProvider.currentColor,
-                          onColorChanged: (color) {
-                            contactProvider.currentColor = color;
-                          },
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("Save"),
-                          ),
-                        ],
+              Consumer(
+                builder: (context, ContactProvider contactProvider, child) {
+                  return ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          contactProvider.currentColor),
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Pick your Color",
+                                style: ThemeTextStyle().m3BodyMedium),
+                            content: BlockPicker(
+                              pickerColor: contactProvider.currentColor,
+                              onColorChanged: (color) {
+                                contactProvider.currentColor = color;
+                              },
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Save"),
+                              ),
+                            ],
+                          );
+                        },
                       );
                     },
+                    child: const Text("Pick Color"),
                   );
                 },
-                child: const Text("Pick Color"),
-              )
+              ),
             ],
           ),
           const SizedBox(
             height: 10,
           ),
-          Container(
-            height: 50,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: contactProvider.currentColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
+          Consumer(
+            builder: (context, ContactProvider contactProvider, child) {
+              return Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: contactProvider.currentColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              );
+            },
           ),
           const SizedBox(
             height: 10,

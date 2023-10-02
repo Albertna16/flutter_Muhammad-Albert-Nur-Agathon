@@ -55,6 +55,31 @@ class ContactProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  bool nameValidate(String name) {
+    final namePattern = name.split(" ");
+    if (namePattern.length < 2) {
+      return false;
+    }
+
+    for (var word in namePattern) {
+      if (!word.startsWith(RegExp(r'[A-Z]'))) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  bool numberValidate(String number) {
+    final phonePattern = RegExp(r"^[0-9]{8,15}$");
+    if (!phonePattern.hasMatch(number)) {
+      return false;
+    } else if (!number.startsWith('0')) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   void deleteContact(int index) {
     contactList.removeAt(index);
     notifyListeners();

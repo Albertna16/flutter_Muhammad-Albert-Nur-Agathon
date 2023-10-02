@@ -11,7 +11,6 @@ class BuildFilePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -24,41 +23,50 @@ class BuildFilePicker extends StatelessWidget {
                 "Files",
                 style: ThemeTextStyle().m3TitleMedium,
               ),
-              Row(
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ThemeColor().m3SysLightPrimary,
-                    ),
-                    onPressed: () {
-                      contactProvider.pickFile();
-                    },
-                    child: const Text("Pick"),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ThemeColor().m3SysLightPrimary,
-                    ),
-                    onPressed: contactProvider.selectedFile != PlatformFile(name: '', path: '', size: 0)
-                        ? () {
-                            contactProvider.openFile();
-                          }
-                        : null,
-                    child: const Text("Open"),
-                  ),
-                ],
+              Consumer(
+                builder: (context, ContactProvider contactProvider, child) {
+                  return Row(
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ThemeColor().m3SysLightPrimary,
+                        ),
+                        onPressed: () {
+                          contactProvider.pickFile();
+                        },
+                        child: const Text("Pick"),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ThemeColor().m3SysLightPrimary,
+                        ),
+                        onPressed: contactProvider.selectedFile !=
+                                PlatformFile(name: '', path: '', size: 0)
+                            ? () {
+                                contactProvider.openFile();
+                              }
+                            : null,
+                        child: const Text("Open"),
+                      ),
+                    ],
+                  );
+                },
               ),
             ],
           ),
           const SizedBox(
             height: 10,
           ),
-          Text(
-            "Nama file: ${contactProvider.selectedFile != PlatformFile(name: '', path: '', size: 0) ? path.basename(contactProvider.selectedFile.path.toString()) : "Tidak terdapat file"}",
-            style: ThemeTextStyle().m3BodyMedium,
+          Consumer(
+            builder: (context, ContactProvider contactProvider, child) {
+              return Text(
+                "Nama file: ${contactProvider.selectedFile != PlatformFile(name: '', path: '', size: 0) ? path.basename(contactProvider.selectedFile.path.toString()) : "Tidak terdapat file"}",
+                style: ThemeTextStyle().m3BodyMedium,
+              );
+            },
           ),
         ],
       ),

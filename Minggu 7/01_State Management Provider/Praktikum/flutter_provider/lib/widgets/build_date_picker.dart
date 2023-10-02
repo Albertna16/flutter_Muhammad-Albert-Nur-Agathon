@@ -10,7 +10,6 @@ class BuildDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contactProvider = Provider.of<ContactProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -23,28 +22,38 @@ class BuildDatePicker extends StatelessWidget {
                 "Date",
                 style: ThemeTextStyle().m3TitleMedium,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ThemeColor().m3SysLightPrimary,
-                ),
-                onPressed: () async {
-                  final selectedDate = await showDatePicker(
-                    context: context,
-                    initialDate: contactProvider.currentDate,
-                    firstDate: DateTime(1990),
-                    lastDate: DateTime(contactProvider.currentDate.year + 5),
+              Consumer(
+                builder: (context, ContactProvider contactProvider, child) {
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ThemeColor().m3SysLightPrimary,
+                    ),
+                    onPressed: () async {
+                      final selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: contactProvider.currentDate,
+                        firstDate: DateTime(1990),
+                        lastDate:
+                            DateTime(contactProvider.currentDate.year + 5),
+                      );
+                      if (selectedDate != null) {
+                        contactProvider.currentDate = selectedDate;
+                      }
+                    },
+                    child: const Text("Select"),
                   );
-                  if (selectedDate != null) {
-                    contactProvider.currentDate = selectedDate;
-                  }
                 },
-                child: const Text("Select"),
               ),
             ],
           ),
-          Text(
-            DateFormat('EEEE, dd-MM-yyyy').format(contactProvider.currentDate),
-            style: ThemeTextStyle().m3BodyMedium,
+          Consumer(
+            builder: (context, ContactProvider contactProvider, child) {
+              return Text(
+                DateFormat('EEEE, dd-MM-yyyy')
+                    .format(contactProvider.currentDate),
+                style: ThemeTextStyle().m3BodyMedium,
+              );
+            },
           ),
         ],
       ),

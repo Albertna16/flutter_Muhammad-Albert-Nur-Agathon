@@ -15,7 +15,6 @@ class ContactScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contactProvider = Provider.of<ContactProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -28,15 +27,23 @@ class ContactScreen extends StatelessWidget {
       body: ListView(
         children: [
           const TextDescription(),
-          TextFieldWidget(
-            label: "Name",
-            hintText: "Insert Your Name",
-            controller: contactProvider.nameController,
+          Consumer(
+            builder: (context, ContactProvider contactProvider, child) {
+              return TextFieldWidget(
+                label: "Name",
+                hintText: "Insert Your Name",
+                controller: contactProvider.nameController,
+              );
+            },
           ),
-          TextFieldWidget(
-            label: "Nomor",
-            hintText: "+62...",
-            controller: contactProvider.numberController,
+          Consumer(
+            builder: (context, ContactProvider contactProvider, child) {
+              return TextFieldWidget(
+                label: "Nomor",
+                hintText: "+62...",
+                controller: contactProvider.numberController,
+              );
+            },
           ),
           const SizedBox(
             height: 16,
