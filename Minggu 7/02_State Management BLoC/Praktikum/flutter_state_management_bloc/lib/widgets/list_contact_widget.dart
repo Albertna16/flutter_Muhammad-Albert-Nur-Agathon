@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_state_management_bloc/bloc/contact_bloc/contact_bloc.dart';
 import 'package:flutter_state_management_bloc/models/contact_models.dart';
-import 'package:flutter_state_management_bloc/provider/contact_bloc/contact_bloc.dart';
 import 'package:flutter_state_management_bloc/themes/theme_color.dart';
 import 'package:flutter_state_management_bloc/themes/theme_text_style.dart';
 import 'package:flutter_state_management_bloc/widgets/dialog_widgets.dart';
 import 'package:flutter_state_management_bloc/widgets/info_dialog_widgets.dart';
-import 'package:intl/intl.dart';
-import 'package:path/path.dart' as path;
 
 class ListContactWidget extends StatelessWidget {
   const ListContactWidget({super.key});
@@ -72,31 +70,6 @@ class ListContactWidget extends StatelessWidget {
                                     textLabel: 'Number:',
                                     textValue: Text(
                                       contact.number,
-                                    ),
-                                  ),
-                                  InforDialogWidgets(
-                                    textLabel: 'Date:',
-                                    textValue: Text(
-                                      DateFormat('EEEE, dd-MM-yyyy')
-                                          .format(contact.date),
-                                    ),
-                                  ),
-                                  InforDialogWidgets(
-                                    textLabel: 'Color:',
-                                    textValue: Container(
-                                      height: 15,
-                                      width: 15,
-                                      decoration: BoxDecoration(
-                                        color: contact.color,
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                  ),
-                                  InforDialogWidgets(
-                                    textLabel: 'File:',
-                                    textValue: Text(
-                                      path.basename(
-                                          contact.file.path.toString()),
                                     ),
                                   ),
                                 ],

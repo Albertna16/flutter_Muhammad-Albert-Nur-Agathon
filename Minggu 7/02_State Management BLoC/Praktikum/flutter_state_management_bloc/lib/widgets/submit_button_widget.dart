@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_state_management_bloc/provider/contact_bloc/contact_bloc.dart';
+import 'package:flutter_state_management_bloc/bloc/contact_bloc/contact_bloc.dart';
 import 'package:flutter_state_management_bloc/themes/theme_color.dart';
 import 'package:flutter_state_management_bloc/themes/theme_text_style.dart';
 import 'package:flutter_state_management_bloc/widgets/dialog_widgets.dart';
@@ -62,9 +62,6 @@ class SubmitButtonWidget extends StatelessWidget {
                                 AddContactEvent(
                                   name: state.nameController.text,
                                   number: state.numberController.text,
-                                  color: state.currentColor,
-                                  date: state.currentDate,
-                                  file: state.selectedFile,
                                 ),
                               );
                           DialogWidgets.showCustomDialog(
@@ -109,9 +106,6 @@ class SubmitButtonWidget extends StatelessWidget {
                                   index: state.indexContact,
                                   name: state.nameController.text,
                                   number: state.numberController.text,
-                                  color: state.currentColor,
-                                  date: state.currentDate,
-                                  file: state.selectedFile,
                                 ),
                               );
                           DialogWidgets.showCustomDialog(

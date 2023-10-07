@@ -1,6 +1,6 @@
 part of 'contact_bloc.dart';
 
-sealed class ContactEvent extends Equatable {
+abstract class ContactEvent extends Equatable {
   const ContactEvent();
 
   @override
@@ -10,41 +10,29 @@ sealed class ContactEvent extends Equatable {
 class AddContactEvent extends ContactEvent {
   final String name;
   final String number;
-  final Color color;
-  final DateTime date;
-  final PlatformFile file;
 
   const AddContactEvent({
     required this.name,
     required this.number,
-    required this.color,
-    required this.date,
-    required this.file,
   });
 
   @override
-  List<Object> get props => [name, number, color, date, file];
+  List<Object> get props => [name, number];
 }
 
 class UpdateContactEvent extends ContactEvent {
   final int index;
   final String name;
   final String number;
-  final Color color;
-  final DateTime date;
-  final PlatformFile file;
 
   const UpdateContactEvent({
     required this.index,
     required this.name,
     required this.number,
-    required this.color,
-    required this.date,
-    required this.file,
   });
 
   @override
-  List<Object> get props => [index, name, number, color, date, file];
+  List<Object> get props => [index, name, number];
 }
 
 class DeleteContactEvent extends ContactEvent {
@@ -66,9 +54,3 @@ class EditContactEvent extends ContactEvent {
 }
 
 class ClearContactEvent extends ContactEvent {}
-
-class PickFileEvent extends ContactEvent {}
-
-class OpenFileEvent extends ContactEvent {}
-
-class ClearFileEvent extends ContactEvent {}
