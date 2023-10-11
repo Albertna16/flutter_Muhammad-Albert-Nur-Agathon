@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       children: [
         const Image(
           fit: BoxFit.cover,
-          image: AssetImage('assets/image/splash_Screen.jpg'),
+          image: AssetImage('assets/image/splash_screen.jpg'),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
