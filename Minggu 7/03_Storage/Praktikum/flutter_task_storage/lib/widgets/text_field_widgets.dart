@@ -6,7 +6,8 @@ class TextFieldWidget extends StatelessWidget {
   final String label;
   final String hintText;
   final TextEditingController? controller;
-  const TextFieldWidget({super.key, required this.label, required this.hintText, this.controller});
+  final TextInputType keyboardType;
+  const TextFieldWidget({super.key, required this.label, required this.hintText, this.controller, required this.keyboardType});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class TextFieldWidget extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           filled: true,
           fillColor: ThemeColor().m3SysLightSurfaceVariant,

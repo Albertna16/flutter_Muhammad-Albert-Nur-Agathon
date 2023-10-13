@@ -16,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void checkLogin() async {
     String user = await SharedPreferencesUtils().getToken();
-    print(user);
+    print('login now: ${user.isEmpty ? 'Not login' : user}');
     if (user.isNotEmpty) {
       Navigator.pushNamedAndRemoveUntil(
         context,
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
       children: [
         const Image(
           fit: BoxFit.cover,
-          image: AssetImage('assets/image/splash_Screen.jpg'),
+          image: AssetImage('assets/image/splash_screen.jpg'),
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               'Contact App',
               style: GoogleFonts.mooli(
-                fontSize: 26,
+                fontSize: 30,
                 color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold,

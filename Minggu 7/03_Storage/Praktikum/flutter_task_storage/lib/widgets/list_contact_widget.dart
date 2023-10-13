@@ -67,12 +67,14 @@ class ListContactWidget extends StatelessWidget {
                                     label: 'Name',
                                     hintText: 'Input yout name',
                                     controller: dbContactManager.nameController,
+                                    keyboardType: TextInputType.name,
                                   ),
                                   TextFieldWidget(
                                     label: 'Number',
                                     hintText: 'Input yout number',
                                     controller:
                                         dbContactManager.numberController,
+                                    keyboardType: TextInputType.phone,
                                   ),
                                 ],
                               ),
@@ -145,7 +147,8 @@ class ListContactWidget extends StatelessWidget {
                         const SizedBox(width: 10),
                         IconButton(
                           onPressed: () {
-                            dbContactManager.deleteContact(contactList.id ?? -1);
+                            dbContactManager
+                                .deleteContact(contactList.id ?? -1);
                             DialogWidgets.showCustomDialog(
                               context,
                               title: 'Data berhasil dihapus',

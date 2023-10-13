@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_app_bar/flutter_gradient_app_bar.dart';
 import 'package:flutter_task_storage/models/db_contact_manager.dart';
-import 'package:flutter_task_storage/routes/routes_navigation.dart';
 import 'package:flutter_task_storage/themes/theme_color.dart';
-import 'package:flutter_task_storage/themes/theme_text_style.dart';
 import 'package:flutter_task_storage/utils/shared_preferences_utils.dart';
 import 'package:flutter_task_storage/widgets/list_contact_widget.dart';
+import 'package:flutter_task_storage/widgets/sidebar_widgets.dart';
 import 'package:flutter_task_storage/widgets/submit_button_widget.dart';
 import 'package:flutter_task_storage/widgets/text_description.dart';
 import 'package:flutter_task_storage/widgets/text_field_widgets.dart';
@@ -24,7 +23,6 @@ class _ContactScreenState extends State<ContactScreen> {
 
   void initial() async {
     username = await SharedPreferencesUtils().getToken();
-
     setState(() {});
   }
 
@@ -51,64 +49,8 @@ class _ContactScreenState extends State<ContactScreen> {
           colors: [Colors.cyan, Colors.blue, Colors.lightBlue],
         ),
       ),
-      drawer: Drawer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 70,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.cyan, Colors.blue, Colors.lightBlue],
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.person,
-                      size: 40,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      username ?? '',
-                      style: ThemeTextStyle().m3TitleLarge,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-              ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ThemeColor().m3SysLightPrimary,
-                ),
-                onPressed: () async {
-                  await SharedPreferencesUtils().removeToken();
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    RoutesNavigation.splashScreen,
-                    (route) => false,
-                  );
-                },
-                child: Text(
-                  'Log Out',
-                  style: ThemeTextStyle().m3LabelLarge,
-                ),
-              ),
-            )
-          ],
-        ),
+      drawer: SidebarWidgets(
+        username: username,
       ),
       body: ListView(
         children: [
@@ -119,6 +61,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 label: "Name",
                 hintText: "Insert Your Name",
                 controller: dbContactManager.nameController,
+                keyboardType: TextInputType.name,
               );
             },
           ),
@@ -128,6 +71,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 label: "Nomor",
                 hintText: "+62...",
                 controller: dbContactManager.numberController,
+                keyboardType: TextInputType.phone,
               );
             },
           ),

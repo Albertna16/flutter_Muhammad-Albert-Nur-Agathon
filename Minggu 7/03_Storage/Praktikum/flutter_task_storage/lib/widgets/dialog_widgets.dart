@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_storage/models/db_contact_manager.dart';
 import 'package:flutter_task_storage/themes/theme_color.dart';
 import 'package:flutter_task_storage/themes/theme_text_style.dart';
+import 'package:provider/provider.dart';
 
 class DialogWidgets {
   static void showCustomDialog(
@@ -23,6 +25,8 @@ class DialogWidgets {
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
+                Provider.of<DbContactManager>(context, listen: false).nameController.clear();
+                Provider.of<DbContactManager>(context, listen: false).numberController.clear();
               },
               child: Text(
                 'Kembali',

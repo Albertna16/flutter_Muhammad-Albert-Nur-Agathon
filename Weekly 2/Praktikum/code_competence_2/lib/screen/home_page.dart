@@ -1,7 +1,8 @@
 import 'package:code_competence_2/models/contact_models.dart';
-import 'package:code_competence_2/models/tourismplace_models.dart';
 import 'package:code_competence_2/widgets/add_dialog_widgets.dart';
 import 'package:code_competence_2/widgets/button_submit_widgets.dart';
+import 'package:code_competence_2/widgets/list_product_widgets.dart';
+import 'package:code_competence_2/widgets/sidebar_widgets.dart';
 import 'package:code_competence_2/widgets/text_description_widgets.dart';
 import 'package:code_competence_2/widgets/text_field_widgets.dart';
 import 'package:flutter/material.dart';
@@ -157,62 +158,7 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
-      endDrawer: Drawer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 50,
-              width: double.infinity,
-              color: Colors.blue,
-              child: Center(
-                child: Text(
-                  'Menu App',
-                  style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Contact Us',
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'About Us',
-                  style: GoogleFonts.poppins(
-                      fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8),
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'Login',
-                  style: GoogleFonts.poppins(
-                      fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      endDrawer: const SidebarWidgets(),
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -303,58 +249,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                Container(
+                SizedBox(
                   height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: tourismPlaceList.length,
-                    itemBuilder: (context, index) {
-                      TourismPlace place = tourismPlaceList[index];
-                      return Container(
-                        width: 200,
-                        margin: const EdgeInsets.only(right: 10),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                ),
-                                child: Image.network(
-                                  "${place.imageAsset}",
-                                  height: 100,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("${place.name}"),
-                                    Text("${place.location}"),
-                                    Text("${place.openDays}"),
-                                    Text("${place.openTime}"),
-                                    Text("${place.ticketPrice}"),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text('Pesan'),
-                                ),
-                              ),
-                            ],
-                          ),
+                  child: ListProductWidgets(
+                    pressedButton: () {
+                      _customDialog(
+                        title: 'Pesanan',
+                        content: const Text(
+                          'Pesanan anda telah diterima oleh pengelola tempat wisata dan anda dapat berwisata, Terima kasih',
                         ),
                       );
                     },

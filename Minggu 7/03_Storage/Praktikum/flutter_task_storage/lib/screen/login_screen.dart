@@ -66,11 +66,13 @@ class _LoginScreenState extends State<LoginScreen> {
             label: 'Username',
             hintText: 'input your username',
             controller: _usernameController,
+            keyboardType: TextInputType.name,
           ),
           TextFieldWidget(
             label: 'Password',
             hintText: 'input your password',
             controller: _passwordController,
+            keyboardType: TextInputType.name,
           ),
           const SizedBox(
             height: 16,
@@ -81,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             onPressed: _isButtonEnabled
                 ? () async {
-                    await SharedPreferencesUtils().saveToken(
+                    await SharedPreferencesUtils().addToken(
                       _usernameController.text,
                     );
 
