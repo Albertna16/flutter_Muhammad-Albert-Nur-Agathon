@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           message: message,
         ));
         _customDialog(
-          title: 'Data berhasil ditambahkan',
+          title: 'Data berhasil dikirimkan',
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -93,6 +93,10 @@ class _HomePageState extends State<HomePage> {
           'firstName: $firstName, lastName: $lastName, email: $email, message: $message',
         );
       });
+      _firstNameController.clear();
+      _lastNameController.clear();
+      _emailController.clear();
+      _messageController.clear();
     }
   }
 
@@ -172,30 +176,30 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               children: [
                 SizedBox(
-                    height: height,
-                    width: width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          'assets/image/address-book-solid.svg',
-                          height: 70,
+                  height: height,
+                  width: width,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/image/address-book-solid.svg',
+                        height: 70,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        'Contact App',
+                        style: GoogleFonts.poppins(
+                          fontSize: 34,
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(
-                          height: 6,
-                        ),
-                        Text(
-                          'Contact App',
-                          style: GoogleFonts.poppins(
-                            fontSize: 34,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
                 const TextDescriptionWidgets(),
                 const SizedBox(height: 16),
                 Row(
